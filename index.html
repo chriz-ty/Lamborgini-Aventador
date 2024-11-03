@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Changing Car</title>
+    <link rel="stylesheet" href="public/index.css">
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        #video-container {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 320px;
+            height: 240px;
+            border: 2px solid white;
+        }
+        #video {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+        #detection-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 3px solid #00ff00;
+            box-sizing: border-box;
+        }
+        #detection-label {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ff00;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        #canvas {
+            display: none;
+        }
+        #colorInfo {
+            position: fixed;
+            bottom: 260px;
+            right: 10px;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+        }
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="heading">
+        <h1>LAMBORGINI AVENTADOR</h1>
+        <div class="border"></div>
+      </div>
+    <div id="loading">Loading Model...</div>
+    <div id="video-container">
+        <video id="video" autoplay playsinline muted></video>
+        <div id="detection-box">
+            <div id="detection-label">Place dress color here</div>
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <div id="colorInfo">Detected Color: <span id="detectedColor">#FFFFFF</span></div>
+
+    <!-- Import Three.js -->
+    <script async src="https://unpkg.com/es-module-shims/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.159.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.159.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <!-- Import OpenCV.js -->
+    <script>
+        function onOpenCvReady() {
+            console.log('OpenCV.js is ready');
+            window.opencvIsReady = true;
+        }
+    </script>
+    <script async src="https://docs.opencv.org/4.8.0/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+
+    <!-- Import main script -->
+    <script type="module" src="main6.js"></script>
+</body>
+</html>
